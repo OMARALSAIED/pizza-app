@@ -8,3 +8,6 @@ sealed class SignUpState extends Equatable {
 }
 
 final class SignUpInitial extends SignUpState {}
+final class SignUpLoading extends SignUpState {}
+final class SignUpFailuer extends SignUpState {}
+final class SignUpSuccess extends SignUpState {}
