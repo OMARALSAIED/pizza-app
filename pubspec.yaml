@@ -31,13 +31,13 @@ dependencies:
   bloc: ^8.1.4
   cupertino_icons: ^1.0.6
   equatable: ^2.0.5
-
-  user_repository:
-    path: packges/user_repository 
   firebase_core: ^3.7.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_screenutil: ^5.9.3
+  user_repository:
+    path: packges/user_repository
 
 dev_dependencies:
   flutter_lints: ^3.0.0
