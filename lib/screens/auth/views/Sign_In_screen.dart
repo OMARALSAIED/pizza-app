@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza/components/my_text_Filed.dart';
 import 'package:pizza/helpers/app.regex.dart';
+import 'package:pizza/helpers/styles.dart';
 import 'package:pizza/screens/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,8 +15,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final passwordController = TextEditingController();
-  final emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
   bool signInRequired = false;
   IconData iconpassword = CupertinoIcons.eye_fill;
@@ -61,6 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         !AppRegex.isEmailValid(val)) {
                       return 'please enter a vaild email';
                     }
+                    return null;
                   },
                 ),
               ),
@@ -80,6 +82,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         !AppRegex.isPasswordValid(val)) {
                       return 'Please enter a vaild password';
                     }
+                    return null;
                   },
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -104,27 +107,24 @@ class _SignInScreenState extends State<SignInScreen> {
                       width: MediaQuery.of(context).size.width * 0.5,
                       child: TextButton(
                         onPressed: () {
-                          if (_formkey.currentState!.validate()) {
+                          if (_formkey.currentState != null &&
+                              _formkey.currentState!.validate()) {
                             context.read<SignInBloc>().add(SignInRequired(
                                 emailController.text, passwordController.text));
                           }
                         },
                         style: TextButton.styleFrom(
                             elevation: 3.0,
-                            backgroundColor: Colors.white,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(60))),
                         child: const Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                          child: Text(
-                            "Sign in",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600),
-                          ),
+                          child: Text("Sign in",
+                              textAlign: TextAlign.center,
+                              style: Styles.font13w600),
                         ),
                       ),
                     )
