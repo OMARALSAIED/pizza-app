@@ -17,11 +17,11 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final  _formkey = GlobalKey<FormState>();
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final ageController = TextEditingController();
+  final _formkey = GlobalKey<FormState>();
   IconData iconpassword = CupertinoIcons.eye_fill;
   bool obscurePassword = true;
   bool signUpReqired = false;
@@ -66,7 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       !AppRegex.isEmailValid(val)) {
                     return 'Please enter a vaild email';
                   }
-                   return null;
+                  return null;
                 },
                 keyboardType: TextInputType.emailAddress,
               ),
@@ -86,56 +86,57 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       !AppRegex.isPasswordValid(val)) {
                     return 'Please enter a vaild password';
                   }
-                   return null;
+                  return null;
                 },
                 onChanged: (val) {
-                    if(val!.contains(RegExp(r'[A-Z]'))) {
-                      setState(() {
-                        containsUpperCase = true;
-                      });
-                    } else {
-                      setState(() {
-                        containsUpperCase = false;
-                      });
-                    }
-                    if(val.contains(RegExp(r'[a-z]'))) {
-                      setState(() {
-                        containsLowerCase = true;
-                      });
-                    } else {
-                      setState(() {
-                        containsLowerCase = false;
-                      });
-                    }
-                    if(val.contains(RegExp(r'[0-9]'))) {
-                      setState(() {
-                        containsNumber = true;
-                      });
-                    } else {
-                      setState(() {
-                        containsNumber = false;
-                      });
-                    }
-                    if(val.contains(RegExp(r'^(?=.*?[!@#$&*~`)\%\-(_+=;:,.<>/?"[{\]}\|^])'))) {
-                      setState(() {
-                        containsSpeicalChar = true;
-                      });
-                    } else {
-                      setState(() {
-                        containsSpeicalChar = false;
-                      });
-                    }
-                    if(val.length >= 8) {
-                      setState(() {
-                        contains8Lenght = true;
-                      });
-                    } else {
-                      setState(() {
-                        contains8Lenght = false;
-                      });
-                    }
-                    return null;
-                  },
+                  if (val.contains(RegExp(r'[A-Z]'))) {
+                    setState(() {
+                      containsUpperCase = true;
+                    });
+                  } else {
+                    setState(() {
+                      containsUpperCase = false;
+                    });
+                  }
+                  if (val.contains(RegExp(r'[a-z]'))) {
+                    setState(() {
+                      containsLowerCase = true;
+                    });
+                  } else {
+                    setState(() {
+                      containsLowerCase = false;
+                    });
+                  }
+                  if (val.contains(RegExp(r'[0-9]'))) {
+                    setState(() {
+                      containsNumber = true;
+                    });
+                  } else {
+                    setState(() {
+                      containsNumber = false;
+                    });
+                  }
+                  if (val.contains(RegExp(
+                      r'^(?=.*?[!@#$&*~`)\%\-(_+=;:,.<>/?"[{\]}\|^])'))) {
+                    setState(() {
+                      containsSpeicalChar = true;
+                    });
+                  } else {
+                    setState(() {
+                      containsSpeicalChar = false;
+                    });
+                  }
+                  if (val.length >= 8) {
+                    setState(() {
+                      contains8Lenght = true;
+                    });
+                  } else {
+                    setState(() {
+                      contains8Lenght = false;
+                    });
+                  }
+                  return;
+                },
                 suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
@@ -151,6 +152,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
+      const      SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,21 +167,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyle(
                           color: containsUpperCase
                               ? Colors.green
-                              : Theme.of(context).colorScheme.onBackground),
+                              : Theme.of(context).colorScheme.onSurface),
                     ),
                     Text(
                       "⚈  1 lowercase",
                       style: TextStyle(
                           color: containsLowerCase
                               ? Colors.green
-                              : Theme.of(context).colorScheme.onBackground),
+                              : Theme.of(context).colorScheme.onSurface),
                     ),
                     Text(
                       "⚈  1 number",
                       style: TextStyle(
                           color: containsNumber
                               ? Colors.green
-                              : Theme.of(context).colorScheme.onBackground),
+                              : Theme.of(context).colorScheme.onSurface),
                     ),
                   ],
                 ),
@@ -188,14 +192,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyle(
                           color: containsSpeicalChar
                               ? Colors.green
-                              : Theme.of(context).colorScheme.onBackground),
+                              : Theme.of(context).colorScheme.onSurface),
                     ),
                     Text(
                       "    ⚈  8 minimum character",
                       style: TextStyle(
                           color: contains8Lenght
                               ? Colors.green
-                              : Theme.of(context).colorScheme.onBackground),
+                              : Theme.of(context).colorScheme.onSurface),
                     ),
                   ],
                 ),
@@ -217,7 +221,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   } else if (val.length > 30) {
                     return 'Name too long';
                   }
-                   return null;
+                  return null;
                 },
               ),
             ),
@@ -234,11 +238,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           MyUser myUser = MyUser.empty;
                           myUser.email = emailController.text;
                           myUser.name = nameController.text;
-      
-                          setState(() {
-                            context.read<SignUpBloc>().add(
-                                SignUpReqired(myUser, passwordController.text));
-                          });
+                          context.read<SignUpBloc>().add(
+                              SignUpReqired(myUser, passwordController.text));
+                          setState(() {}); //change
                         }
                       },
                       style: TextButton.styleFrom(

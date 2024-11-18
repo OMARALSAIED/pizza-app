@@ -30,6 +30,6 @@ class MyUser {
 
   @override
   String toString() {
-    return 'MyUser: $userId,$email,$name,$hasavtiveCart';
+     return 'MyUser: $userId, $email, $name, $hasavtiveCart';
   }
 }

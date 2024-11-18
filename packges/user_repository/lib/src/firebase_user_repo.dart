@@ -6,23 +6,24 @@ import 'package:user_repository/src/entites/entites.dart';
 import 'package:user_repository/src/models/user.dart';
 import 'package:user_repository/src/user_repo.dart';
 
-class FierbaseUserRepo implements UserRepository {
+class FirebaseUserRepo implements UserRepository {
   final FirebaseAuth _firebaseAuth;
+	final usersCollection = FirebaseFirestore.instance.collection('users');
 
-  final userCollection = FirebaseFirestore.instance.collection('users');
-
-  FierbaseUserRepo({
+  FirebaseUserRepo({
     FirebaseAuth? firebaseAuth,
   }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
   @override
   Stream<MyUser?> get user {
-    return _firebaseAuth.authStateChanges().flatMap((fierbaseUser) async* {
-      if (fierbaseUser == null) {
+    return _firebaseAuth.authStateChanges().flatMap((firebaseUser) async* {
+      if(firebaseUser == null) {
         yield MyUser.empty;
       } else {
-        yield await userCollection.doc(fierbaseUser.uid).get().then(
-            (value) => MyUser.fromEntity(MyUserEntity.fromJson(value.data()!)));
+        yield await usersCollection
+          .doc(firebaseUser.uid)
+          .get()
+          .then((value) => MyUser.fromEntity(MyUserEntity.fromJson(value.data()!)));
       }
     });
   }
@@ -30,8 +31,7 @@ class FierbaseUserRepo implements UserRepository {
   @override
   Future<void> signIn(String email, String password) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+            await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
       log(e.toString());
       rethrow;
@@ -39,13 +39,14 @@ class FierbaseUserRepo implements UserRepository {
   }
 
   @override
-  Future<MyUser?> signUp(MyUser myUser, String password) async {
+  Future<MyUser> signUp(MyUser myUser, String password) async {
     try {
-      UserCredential userCredential =
-          await _firebaseAuth.createUserWithEmailAndPassword(
-              email: myUser.email, password: password);
+      UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: myUser.email, 
+        password: password
+      );
 
-      myUser.userId = userCredential.user!.uid;
+      myUser.userId = user.user!.uid;
       return myUser;
     } catch (e) {
       log(e.toString());
@@ -59,12 +60,19 @@ class FierbaseUserRepo implements UserRepository {
   }
 
   @override
-  Future<void> setUserData(MyUser Myuser) async {
+  Future<void> setUserData(MyUser myUser) async {
     try {
-      await userCollection.doc(Myuser.userId).set(Myuser.toEntity().toJson());
+      await usersCollection
+        .doc(myUser.userId)
+        .set(myUser.toEntity().toJson());
     } catch (e) {
       log(e.toString());
       rethrow;
     }
   }
+
+  
+
+  
+  
 }

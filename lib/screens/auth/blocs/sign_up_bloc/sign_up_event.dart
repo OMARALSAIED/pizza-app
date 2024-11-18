@@ -14,5 +14,5 @@ class SignUpReqired extends SignUpEvent {
   const SignUpReqired(this.user, this.password);
 
   @override
-  List<Object> get prpos => [password];
+  List<Object> get prpos => [user,password];
 }

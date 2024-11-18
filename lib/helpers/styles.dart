@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:pizza/constants/colors.dart';
 
 abstract class Styles {
   static const font13w600 =

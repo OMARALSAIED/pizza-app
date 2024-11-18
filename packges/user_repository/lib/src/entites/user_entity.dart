@@ -23,7 +23,7 @@ class MyUserEntity {
     return MyUserEntity(
         userId: doc['userId'],
         email: doc['email'],
-        hasactiveCart: doc['hasactiveCart'],
+        hasactiveCart: doc['hasactiveCart'] ?? false,
         name: doc['name']);
   }
 }

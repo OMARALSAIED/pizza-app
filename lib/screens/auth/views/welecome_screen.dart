@@ -31,7 +31,7 @@ class _WelecomeScreenState extends State<WelecomeScreen>
   Widget build(BuildContext context) {
      ScreenUtil.init(context);
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SingleChildScrollView(
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
@@ -73,10 +73,10 @@ class _WelecomeScreenState extends State<WelecomeScreen>
                                 controller: tabController,
                                 unselectedLabelColor: Theme.of(context)
                                     .colorScheme
-                                    .onBackground
+                                    .onSurface
                                     .withOpacity(0.5),
                                 labelColor:
-                                    Theme.of(context).colorScheme.onBackground,
+                                    Theme.of(context).colorScheme.onSurface,
                                 tabs: const [
                                   Padding(
                                     padding: EdgeInsets.all(12.0),
@@ -102,11 +102,11 @@ class _WelecomeScreenState extends State<WelecomeScreen>
                                     create: (context) => SignInBloc(context
                                         .read<AuthenticationBloc>()
                                         .userRepository),
-                                        child:  SignInScreen(),
+                                        child:  const SignInScreen(),
                                         ),
                                         BlocProvider<SignUpBloc>(create:(context)=>SignUpBloc(context.read<AuthenticationBloc>().userRepository),
                                         
-                                        child:SignUpScreen())
+                                        child:const SignUpScreen())
                               ]))
                         ])))
               ],

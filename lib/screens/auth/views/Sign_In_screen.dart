@@ -53,6 +53,7 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: AppTextFormFiled(
+                  controller: emailController,
                   hinttext: 'Email',
                   keyboardType: TextInputType.emailAddress,
                   prefixIcon: const Icon(CupertinoIcons.mail_solid),
@@ -72,10 +73,11 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: AppTextFormFiled(
+                  controller: passwordController,
                   hinttext: 'Password',
                   isObscreText: obscurepassword,
                   keyboardType: TextInputType.visiblePassword,
-                  prefixIcon: Icon(CupertinoIcons.lock_fill),
+                  prefixIcon: const Icon(CupertinoIcons.lock_fill),
                   validator: (val) {
                     if (val == null ||
                         val.isEmpty ||
@@ -128,7 +130,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                     )
-                  : CircularProgressIndicator()
+                  : const CircularProgressIndicator()
             ],
           )),
     );

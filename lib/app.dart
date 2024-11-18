@@ -6,7 +6,7 @@ import 'package:user_repository/user_repository.dart';
 
 class MyApp extends StatelessWidget {
   final UserRepository userRepository;
-   MyApp( this.userRepository,
+   const MyApp( this.userRepository,
      {
      
     super.key,
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider<AuthenticationBloc>(
       create: (context) => AuthenticationBloc(userRepository: userRepository),
-      child: MyappView(),
+      child: const MyappView(),
     );
   }
 }

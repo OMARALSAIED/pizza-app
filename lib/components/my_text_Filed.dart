@@ -57,7 +57,7 @@ class AppTextFormFiled extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: Colors.red, width: 1.3),
         ),
-        hintStyle: hintStyle ?? TextStyle(fontSize: 14, color: Colors.grey),
+        hintStyle: hintStyle ?? const TextStyle(fontSize: 14, color: Colors.grey),
         hintText: hinttext,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
