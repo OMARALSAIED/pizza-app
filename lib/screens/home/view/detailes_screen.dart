@@ -91,19 +91,35 @@ class DetailesScreen extends StatelessWidget {
                     ),
                     const Row(
                       children: [
-                        macro(),
-                         SizedBox(
-                          width: 5,
+                        macro(
+                          value: 467,
+                          title: "Calories",
+                          icon: CupertinoIcons.airplane,
                         ),
-                       macro(),
                         SizedBox(
                           width: 5,
                         ),
-                       macro(),
+                        macro(
+                          value: 36,
+                          title: "Protein",
+                          icon: CupertinoIcons.snow,
+                        ),
                         SizedBox(
                           width: 5,
                         ),
-                     macro()
+                        macro(
+                          value: 40,
+                          title: "Fat",
+                          icon: CupertinoIcons.airplane,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        macro(
+                          value: 46,
+                          title: "Carbs",
+                          icon: CupertinoIcons.airplane,
+                        )
                       ],
                     )
                   ],
@@ -116,4 +132,3 @@ class DetailesScreen extends StatelessWidget {
     );
   }
 }
-
