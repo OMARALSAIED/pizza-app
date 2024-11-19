@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pizza/components/macro.dart';
 import 'package:pizza/constants/colors.dart';
 import 'package:pizza/helpers/app_images.dart';
+import 'package:pizza/helpers/styles.dart';
 
 class DetailesScreen extends StatelessWidget {
   const DetailesScreen({super.key});
@@ -32,7 +34,7 @@ class DetailesScreen extends StatelessWidget {
                       image: AssetImage(AppImages.pizza))),
             ),
             const SizedBox(
-              height: 10,
+              height: 24,
             ),
             Container(
               decoration: BoxDecoration(
@@ -44,7 +46,7 @@ class DetailesScreen extends StatelessWidget {
                 ],
               ),
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding:const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Column(
                   children: [
                     Row(
@@ -92,36 +94,54 @@ class DetailesScreen extends StatelessWidget {
                     const Row(
                       children: [
                         macro(
+                          icon: FontAwesomeIcons.fire,
                           value: 467,
                           title: "Calories",
-                          icon: CupertinoIcons.airplane,
                         ),
                         SizedBox(
                           width: 5,
                         ),
                         macro(
+                          icon: FontAwesomeIcons.dumbbell,
                           value: 36,
                           title: "Protein",
-                          icon: CupertinoIcons.snow,
                         ),
                         SizedBox(
                           width: 5,
                         ),
                         macro(
+                          icon: FontAwesomeIcons.oilWell,
                           value: 40,
                           title: "Fat",
-                          icon: CupertinoIcons.airplane,
                         ),
                         SizedBox(
                           width: 5,
                         ),
                         macro(
+                          icon: FontAwesomeIcons.breadSlice,
                           value: 46,
                           title: "Carbs",
-                          icon: CupertinoIcons.airplane,
-                        )
+                        ),
                       ],
-                    )
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                              elevation: 3.0,
+                              backgroundColor: kblack,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                          onPressed: () {},
+                          child: const Text(
+                            "Buy Now",
+                            style: Styles.textstyle20,
+                          ),
+                        ))
                   ],
                 ),
               ),

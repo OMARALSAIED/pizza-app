@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pizza/constants/colors.dart';
 
 class macro extends StatelessWidget {
   final String title;
   final int value;
   final IconData icon;
+
   const macro({
     super.key,
-    required this.icon,
     required this.title,
     required this.value,
+    required this.icon,
   });
 
   @override
@@ -26,16 +28,16 @@ class macro extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          Icon(
+          FaIcon(
             icon,
             color: kred,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
-            '$value $title',
-            style: TextStyle(fontSize: 10),
+            title == "Calories" ? '$value $title' : '${value}g $title',
+            style: const TextStyle(fontSize: 10),
           )
         ]),
       ),

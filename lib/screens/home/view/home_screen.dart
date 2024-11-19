@@ -148,7 +148,7 @@ class HomeScreen extends StatelessWidget {
                                     width: 5,
                                   ),
                                   const Text(
-                                    "\$12.00",
+                                    "\$15.00",
                                     style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold,
