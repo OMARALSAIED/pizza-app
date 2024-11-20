@@ -5,9 +5,11 @@ import 'package:pizza/components/macro.dart';
 import 'package:pizza/constants/colors.dart';
 import 'package:pizza/helpers/app_images.dart';
 import 'package:pizza/helpers/styles.dart';
+import 'package:pizza_repository/pizza_repository.dart';
 
 class DetailesScreen extends StatelessWidget {
-  const DetailesScreen({super.key});
+  final Pizza? pizza;
+  DetailesScreen({super.key, this.pizza});
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +48,16 @@ class DetailesScreen extends StatelessWidget {
                 ],
               ),
               child: Padding(
-                padding:const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: Text(
-                            "Truffle Temptation Extravaganza",
+                            pizza!.name,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
@@ -66,7 +69,7 @@ class DetailesScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "\$12.00",
+                                  "\$${pizza!.price - (pizza!.price * (pizza!.discount) / 100)}",
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -74,9 +77,9 @@ class DetailesScreen extends StatelessWidget {
                                           .colorScheme
                                           .primary),
                                 ),
-                                const Text(
-                                  "\$15.00",
-                                  style: TextStyle(
+                                Text(
+                                  "\$${pizza!.price}",
+                                  style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: kgrey,
@@ -91,11 +94,11 @@ class DetailesScreen extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
-                    const Row(
+                    Row(
                       children: [
                         macro(
                           icon: FontAwesomeIcons.fire,
-                          value: 467,
+                          value: pizza!.macros.calories,
                           title: "Calories",
                         ),
                         SizedBox(
@@ -103,7 +106,7 @@ class DetailesScreen extends StatelessWidget {
                         ),
                         macro(
                           icon: FontAwesomeIcons.dumbbell,
-                          value: 36,
+                          value: pizza!.macros.proteins,
                           title: "Protein",
                         ),
                         SizedBox(
@@ -111,7 +114,7 @@ class DetailesScreen extends StatelessWidget {
                         ),
                         macro(
                           icon: FontAwesomeIcons.oilWell,
-                          value: 40,
+                          value: pizza!.macros.fat,
                           title: "Fat",
                         ),
                         SizedBox(
@@ -119,7 +122,7 @@ class DetailesScreen extends StatelessWidget {
                         ),
                         macro(
                           icon: FontAwesomeIcons.breadSlice,
-                          value: 46,
+                          value: pizza!.macros.carbs,
                           title: "Carbs",
                         ),
                       ],

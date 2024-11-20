@@ -40,6 +40,9 @@ dependencies:
   user_repository:
     path: packges/user_repository
 
+  pizza_repository:
+    path: packges/pizza_repository
+
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:
